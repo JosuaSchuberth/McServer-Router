@@ -1,0 +1,93 @@
+############################
+# PyCharm / IntelliJ IDEA  #
+############################
+.idea/
+*.iml
+
+############################
+# Python bytecode & Cache  #
+############################
+__pycache__/
+*.py[cod]
+*$py.class
+
+############################
+# Virtuelle Umgebungen     #
+############################
+venv/
+.venv/
+env/
+.env/
+ENV/
+.python-env/
+.python/
+
+############################
+# Build / Distribution     #
+############################
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+############################
+# Logs & temporäre Dateien #
+############################
+*.log
+*.pot
+*.py,cover
+*.pid
+*.seed
+*.tmp
+*.temp
+
+############################
+# Test / Coverage Tools    #
+############################
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+############################
+# Linting / Typing         #
+############################
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.pylint.d/
+
+############################
+# IDE / Editor Sonstiges   #
+############################
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+############################
+# Umgebung / Secrets       #
+############################
+.env.*
+.envrc
+*.env
+*.secret
+secrets.json
