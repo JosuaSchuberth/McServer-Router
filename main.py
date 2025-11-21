@@ -1,26 +1,33 @@
-from typing import List
-
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+import time
 
 app = FastAPI()
-
-connections: List[WebSocket] = []
 
 
 @app.get("/")
 async def root():
-    return {"message": "FastAPI WebSocket-Server läuft 🚀"}
+    return {"message": "FastAPI WebSocket Ping/Pong läuft 🚀"}
 
 
 @app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
+async def websocket_ping_pong(websocket: WebSocket):
     await websocket.accept()
-    connections.append(websocket)
+    print("Client verbunden")
+
     try:
         while True:
-            data = await websocket.receive_text()
-            # Broadcast an alle verbundenen Clients
-            for conn in connections:
-                await conn.send_text(f"Client sagt: {data}")
+            message = await websocket.receive_text()
+            if not message.startswith("ping:"):
+                continue
+
+            parts = message.split(":", 1)
+            try:
+                client_ts = float(parts[1])
+            except (IndexError, ValueError):
+                continue
+
+            server_ts = time.time()
+            await websocket.send_text(f"pong:{client_ts}:{server_ts}")
+
     except WebSocketDisconnect:
-        connections.remove(websocket)
+        print("Client getrennt")
